@@ -1,5 +1,5 @@
     'use strict';
-
+//kd change
 /* App Module */
 
 var laundryApp = angular.module('laundryErp', [

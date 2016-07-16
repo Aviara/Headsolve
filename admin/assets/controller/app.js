@@ -1,5 +1,5 @@
     'use strict';
-
+// KD TEST
 /* App Module */
 //kalpesh test
 var laundryApp = angular.module('laundryErp', [

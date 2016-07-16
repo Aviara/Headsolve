@@ -1,7 +1,7 @@
 'use strict';
 //kd change
 /* Controllers */
-
+//kalpesh test
 var laundryCtrl = angular.module('laundryCtrl', []);
 
 /* Contoller coding started from here */

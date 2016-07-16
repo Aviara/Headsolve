@@ -1,0 +1,114 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Client Requirement 
+                            </a>
+                        </li>
+                        <li class="active">
+                            Search Client
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-9">
+                    <a href="#/view-clients"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing">View Clients</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <!--
+                        Form validation by angular JS best example
+                        https://scotch.io/tutorials/angularjs-form-validation
+                    -->
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Client cloth Requirement.</span>
+                        </div>
+                    </div>
+                    <form role="form" class="form-horizontal" ng-submit="searchClient(clientsearch)"   name="searchClient" novalidate><!--this function we have to write in the controller of angular-->
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label for="search-by-name"> Search By Name </label><br>
+                                        <select id="search-by-name" class="search-by-name">
+                                            <option ng-repeat="client in clientList track by $index" value="{{client.id}}">{{client.first_name}} {{client.last_name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label for="search-by-mobile-no"> Search By Mobile No </label><br>
+                                        <select id="search-by-mobile-no" class="search-by-mobile-no">
+                                            <option ng-repeat="client in clientList track by $index" value="{{client.id}}">{{client.mobile_no}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group">
+                                        <label for="search-by-email-id"> Search By Email ID </label><br>
+                                        <select id="search-by-email-id" class="search-by-email-id">
+                                            <option ng-repeat="client in clientList track by $index" value="{{client.id}}">{{client.email_id}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="center">
+                            <div class="col-md-10">
+                                <a href=""><button type="button" class="btn btn-success breadcrumb-button" name="searchclient">Search Client</button></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function () {
+    $(".search-by-name").select2();
+    $(".search-by-mobile-no").select2();
+    $(".search-by-email-id").select2();
+//        $(".form-field-select-3").select2({
+//      ajax: {
+//        url: "http://laundryerp.lcl/client/searchClients",
+//        dataType: 'json',
+//        delay: 250,
+//        data: function (params) {
+//          return {
+//            search: params.term, // search term
+//            page: params.page
+//          };
+//        },
+//        processResults: function (data, params) {
+//          // parse the results into the format expected by Select2
+//          // since we are using custom formatting functions we do not need to
+//          // alter the remote JSON data, except to indicate that infinite
+//          // scrolling can be used
+//          params.page = params.page || 1;
+//     
+//          return {
+//            results: data.items,
+//            pagination: {
+//              more: (params.page * 30) < data.total_count
+//            }
+//          };
+//        },
+//        cache: true
+//      },
+//      escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+//      minimumInputLength: 1,
+//    });
+});
+</script>

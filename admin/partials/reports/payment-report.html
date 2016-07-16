@@ -1,0 +1,333 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Payments
+                            </a>
+                        </li>
+                        <li class="active">
+                            Payment Listing
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">
+                    <a href="#/challan"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> Add New Challan</i></button></a>
+                    <a href="#/view-challans"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-list"> View All Challans</i></button></a>
+                </div>
+            </div>
+             <div class="panel panel-white" >
+                <div class="panel-body">
+                    <div class="row">
+<!--                                &nbsp&nbsp <div class="col-md-2 col-sm-4 col-xs-12"><a class="btn btn-green show-sv" href="javascript:void(0);" data-startFrom="right"><b>Payments Reports</b> <i class="fa fa-chevron-right"></i></a></div>-->
+                            <div class="col-md-3">
+                               <form role="form" class="form-horizontal" ng-submit="showPaymentReportByDate(challan_id)" name="paymentMonthlyReport" novalidate>
+                                   <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Click</span>
+                                        <select  id="search-by-name" name="challan_id" class="search-by-name" ng-model="challan_id">
+                                            <option selected="selected"  value="">Select Month</option>
+                                            <option  value="1">Jan</option>
+                                            <option  value="2">Feb</option>
+                                            <option  value="3">Mar</option>
+                                            <option  value="4">Apr</option>
+                                            <option  value="5">May</option>
+                                            <option  value="6">June</option>
+                                            <option  value="7">Jul</option>
+                                            <option  value="8">Aug</option>
+                                            <option  value="9">Sep</option>
+                                            <option  value="10">Oct</option>
+                                            <option  value="11">Nov</option>
+                                            <option  value="12">Dec</option>
+<!--                                        <option ng-repeat="deliveryStatus in deliveryStatusList track by $index" value="{{deliveryStatus.month}}-{{deliveryStatus.year}}">{{deliveryStatus.month}}-{{deliveryStatus.year}}</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 center">
+                                     <button type="submit" value="submit" name="submit" class="btn btn-success" ng-disabled="">
+                                     <i class="fa fa-eye"> Show Report</i></button>
+                                </div>
+<!--                                </div><div class="col-md-1 col-sm-1 col-xs-1">OR<h3></div>-->
+                               </form>
+                            </div>
+                                 <div class="col-md-1"> 
+                                   <h3 class="center">OR</h3>
+                                 </div>
+<!--                                  <div class="col-md-3 col-sm-3 col-xs-12"><a class="btn btn-green show-sv" href="javascript:void(0);" data-startFrom="right">Date Range For <b>Payment</b> <i class="fa fa-chevron-right"></i></a></div>-->
+                                 <div class="col-md-6">
+                                   <div class="input-group col-md-6 col-sm-3 col-xs-12">
+                                      <span class="input-group-addon"> <i class="fa fa-calendar"></i></span>
+				      <input type="text" class="form-control date-range" id="date-range-payment-report" ng-model="dateRange" placeholder="Select Date Range.">
+				   </div>
+                                     <div class="col-md-12 center">
+                                      <button type="button" value="button" name="button" class="btn btn-success" ng-disabled="" ng-click="showPaymentReportByDateRange();"><i class="fa fa-eye">Show Report</i></button>
+                                   </div>
+                                 </div>
+                         </div>
+                </div>
+            </div>
+            <div class="panel panel-white" style="overflow-y: hidden;">
+                <div class="panel-heading">
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <h4 class="panel-title">Payments <span class="text-bold">List</span></h4>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6 right-align">
+                        <button ng-click="getPaymentReport(challan_id)" title="Download Payment details" class="btn btn-info"><i class="fa fa-download"> Export Payments</i></button>
+                    </div>
+                     <div class="col-md-3 col-sm-6 col-xs-6 ">
+                        <button ng-click="getPaymentReportByDateRange(dateRange)" title="Download Payment details" class="btn btn-info"><i class="fa fa-download"> Export By Date Range</i></button>
+                    </div>
+                </div>
+                <div class="panel-body" id="payment-details">
+                    <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th class="hidden-xs">Challan ID</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Store Name</th>
+                                <th>Total Amount</th>
+                                <th>Paid Amount</th>
+                                <th>Remaining Amount</th>
+                                <th>Total Items</th>
+                                <th>Completed</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="payment in challanList track by $index" id="row-{{payment.id}}" ng-class="{ 'success': 0 == payment.remaining_amount }">
+                                <td>{{payment.id}}</td>
+                                <td class="hidden-xs">
+                                    <ul class="nav nav-pills" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#/challan/edit/{{payment.challan_id}}" title="View challan details.">
+                                                <span class="badge">{{payment.challan_id}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>{{payment.client_name}} ({{payment.client_id}})</td>
+                                <td>{{payment.employee_name}} ({{payment.employee_id}})</td>
+                                <td>{{payment.store_name}} ({{payment.store_id}})</td>
+                                <td>{{payment.total_amount}}</td>
+                                <td>{{payment.paid_amount}}</td>
+                                <td>{{payment.remaining_amount}}</td>
+                                <td>{{payment.total_items}}</td>
+                                <td>{{payment.is_completed}}</td>
+                                <td>
+                                    <div ng-if="1 <= payment.remaining_amount">
+                                        <button class="btn btn-success" data-target=".bs-example-modal-lg" data-toggle="modal" ng-click="editPaymentDetails(payment.id)"><i class="fa fa-money"> Add Payment</i></button>
+                                    </div>
+                                    <button class="btn btn-success" data-target=".bs-example-modal-lg-view" data-toggle="modal" ng-click="viewPaymentDetails(payment.id)"><i class="fa fa-money"> View Transactions</i></button>
+
+                                    <a class="hide" href="#/new-payment/edit/{{payment.id}}">
+                                        <button class="btn btn-blue">
+                                            Edit
+                                        </button>
+                                    </a>
+                                    <button data-target=".bs-example-modal-sm" data-toggle="modal" class="btn btn-blue hide" id="cancellSweetAlert" ng-click="deleteConfirm(payment.id)">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Small modal -->
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Delete Client</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Do you want to delete the Payment?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="button" ng-click="deletePayment();">
+                                Delete IT!
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+            <!-- Large modal -->
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Paid Payment</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                    <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                                        <thead>
+                                            <tr>
+                                                <th>S.N/ID</th>
+                                                <th class="hidden-xs">Challan ID</th>
+                                                <th>Client Name</th>
+                                                <th>Employee Name</th>
+                                                <th>Store Name</th>
+                                                <th>Total Amount</th>
+                                                <th>Paid Amount</th>
+                                                <th>Remaining Amount</th>
+                                                <th>Total Items</th>
+                                                <th>Completed</th>
+                                                <th>Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="payment-details-copy">
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="alert alert-success" role="alert">
+                                        <form role="form" class="form-horizontal" ng-submit="savePaymentUpdate(payment)" name="paymentSave" novalidate>
+                                            <div class="form-group" ng-class="{ 'has-error': paymentSave.name.$touched && paymentSave.name.$invalid }">
+                                                <label class="col-sm-2 control-label" for="paid_amount">Paid Amount</label>
+                                                <div class="col-sm-4">
+                                                    <input type="hidden" value="{{payment_id}}" name="id" ng-model="payment.payment_id" />
+                                                    <input type="text" placeholder="Enter Paid Amount" id="paid_amount" class="form-control" name="paid_amount" ng-model="payment.paid_amount" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group center">
+                                                <button type="submit" value="submit" name="submit" class="btn btn-success" ng-disabled="paymentSave.$invalid">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button" id="close-edit-payment">
+                                Close
+                            </button>
+                            <button class="btn btn-primary hide" type="button">
+                                Save Payment
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+
+            <!-- basic modal -->
+            <div class="modal fade bs-example-modal-lg-view" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Paid Payment</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                    <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                                        <thead>
+                                            <tr>
+                                                <th>S.N/ID</th>
+                                                <th class="hidden-xs">Challan ID</th>
+                                                <th>Client Name</th>
+                                                <th>Employee Name</th>
+                                                <th>Store Name</th>
+                                                <th>Total Amount</th>
+                                                <th>Paid Amount</th>
+                                                <th>Remaining Amount</th>
+                                                <th>Total Items</th>
+                                                <th>Completed</th>
+                                                <th>Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="payment-details-view-copy">
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="alert alert-success" role="alert">
+                                        <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.N/ID</th>
+                                                    <th>Challan ID</th>
+                                                    <th>Client ID</th>
+                                                    <th>Billed Amount</th>
+                                                    <th>Remaning Amount</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Created By</th>
+                                                    <th>Created On</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="transaction in paymentTransactionList track by $index" id="row-{{transaction.id}}">
+                                                    <td>{{transaction.id}}</td>
+                                                    <td class="hidden-xs">
+                                                        <ul class="nav nav-pills" role="tablist">
+                                                            <li role="presentation" class="active">
+                                                                <a href="#/challan/edit/{{transaction.challan_id}}" title="View challan details.">
+                                                                    <span class="badge">{{transaction.challan_id}}</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                    <td>{{transaction.client_id}}</td>
+                                                    <td>{{transaction.billed_amount}}</td>
+                                                    <td>{{transaction.remaning_amount}}</td>
+                                                    <td>{{transaction.total_amount}}</td>
+                                                    <td>{{transaction.created_by}}</td>
+                                                    <td>{{transaction.created_on}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button" id="close-edit-payment">
+                                Close
+                            </button>
+                            <button class="btn btn-primary hide" type="button">
+                                Save Payment
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+
+            <div class="col-md-12 center">
+                <a href="#/challan"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> Add New Challan</i></button></a>
+                <a href="#/view-challans"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-list"> View All Challans</i></button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.date-range').daterangepicker();
+</script>

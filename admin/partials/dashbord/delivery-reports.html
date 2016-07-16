@@ -1,0 +1,103 @@
+<!--     start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <div class="container">
+            <!-- start: PAGE HEADER -->
+            <!-- start: TOOLBAR -->
+            <div class="toolbar row">
+                <div class="col-sm-6 hidden-xs">
+                    <div class="page-header">
+                        <h1>PickUp <small>overview &amp; stats </small></h1>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <a href="javascript:void(0);" class="back-subviews">
+                        <i class="fa fa-chevron-left"></i> BACK
+                    </a>
+                    <a href="javascript:void(0);" class="close-subviews">
+                        <i class="fa fa-times"></i> CLOSE
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">&nbsp</div>
+            <div class="row">
+                 <div class="centered col-md-3">
+                    <button class="btn btn-success" ng-click="downloadTodaysDeliveredClothes()">Todays delivered cloths.</button>
+                </div>
+                 <div class="centered col-md-3">
+                    <button class="btn btn-success" ng-click="downloadLinedupPickups()">Deliveries lined up for today</button>
+                    </div> 
+            </div>
+            <br>
+
+          <div class="row" ng-if="first_table == true">
+                <div class="col-md-12 col-sm-12 col-xs-12"> 
+                    <h3>Todays Delivered cloths.</h3>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover table-striped" id="data-table-1">
+                        <thead>
+                            <tr>
+                                <th>Challan Id</th>
+                                <th>Client Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in deliveriesInLineForToday track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td>{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_by}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" ng-if="second_table == true">
+                <div class="col-md-12 col-sm-12 col-xs-12">  
+                   <h3>Todays Lined up cloths.</h3>
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover" id="data-table-2">
+                        <thead>
+                            <tr>
+                                <th>Challan Id</th>
+                                <th>Client Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="linedup in challanList track by $index">
+                                <td>{{linedup.id}}</td>
+                                <td>{{linedup.client_name}} ({{linedup.client_id}})</td>
+                                <td>{{linedup.pick_up_date}}</td>
+                                <td>{{linedup.delivery_estimate_date}}</td>
+                                <td>{{linedup.delivery_status_id}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+           </div>
+    </div>
+</div>
+
+<!--<script>
+    $('.date-picker').datepicker({
+      format: 'dd-mm-yyyy'
+    });
+</script>-->
+<script>
+            $(document).ready(function () {
+                  
+                $('.date-picker').datepicker({
+                    format: 'dd-mm-yyyy'
+                });
+                
+                $('.date-range').daterangepicker();
+            });
+</script>

@@ -1,0 +1,83 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Package
+                            </a>
+                        </li>
+                        <li class="active">
+                            Add Package
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">
+                    <a href="#/view-packages"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing">View Packages</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <!--
+                        Form validation by angular JS best example
+                        https://scotch.io/tutorials/angularjs-form-validation
+                    -->
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Package update functionality.</span>
+                        </div>
+                    </div>
+
+                    <form role="form" class="form-horizontal" ng-submit="savePackageData(package)" name="packageSave" novalidate>
+                        <div class="form-group" ng-class="{ 'has-error': packageSave.name.$touched && packageSave.name.$invalid }">
+                            <label class="col-sm-2 control-label" for="name">Name</label>
+                            <div class="col-sm-9">
+                                <input type="hidden" value="{{packageDetails.id}}" name="id" />
+                                <input type="text" placeholder="Name" id="name" class="form-control" name="name" ng-model="package.name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" ng-class="{ 'has-error': packageSave.description.$touched && packageSave.description.$invalid }">
+                            <label class="col-sm-2 control-label" for="description">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Enter Description" id="description" class="form-control" name="description" ng-model="package.description" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': packageSave.basic_price.$touched && packageSave.basic_price.$invalid }">
+                            <label class="col-sm-2 control-label" for="basic_price">Basic Price</label>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Enter Basic Price" id="basic_price" class="form-control" name="basic_price" ng-model="package.basic_price" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': packageSave.cycle.$touched && packageSave.cycle.$invalid }">
+                            <label class="col-sm-2 control-label" for="basic_price">Cycle</label>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Enter cycles for package (P/G)" id="cycle" class="form-control" name="cycle" ng-model="package.cycle">
+                            </div>
+                        </div>
+                         <div><p class="center"><h3>{{message}}</h3></p></div>
+                        <div ng-if="updateData == false">
+                            <div class="form-group center">
+                                <button type="submit" value="submit" name="submit" class="btn btn-success" ng-disabled="packageSave.$invalid">Submit</button>
+                                <a href="#/view-packages"><button type="button" value="button" name="view-menu" class="btn btn-success">View Packages</button></a>
+                            </div>
+                        </div>
+
+                        <div ng-if="updateData == true">
+                            <div class="form-group center">
+                                <button type="submit" value="update" name="submit" ng-class="{ 'btn-success' : packageSave.$valid }" class="btn btn-success" ng-disabled="packageSave.$invalid">Update</button>
+                                <a href="#/view-packages"><button type="button" value="button" name="view-menu" class="btn btn-success">View Packages</button></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

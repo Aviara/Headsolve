@@ -1,0 +1,73 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Images
+                            </a>
+                        </li>
+                        <li class="active">
+                            Upload Image
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">       
+                    <a href="#/view-gallery-images"><button type="button" value="button" name="view-branch" class="btn btn-success">View Images</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+               
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Resorts update functionality.</span>
+                        </div>
+                    </div>
+                    <form role="form" class="form-horizontal" ng-submit="saveImages(ins_res_img)" name="imageSave" novalidate>
+                     
+<!--                        <div class="row">
+                        <div class="form-group col-md-5" ng-class="{ 'has-error': imageSave.id.$touched && imageSave.id.$invalid }">
+                            <label class="col-sm-4 control-label" for="url">Resorts Id</label>
+                            <div class="col-sm-8">
+                                <select id="form-field-select-1" class="form-control" ng-model="ins_res_img.id" name="id">
+                                    <option value="">Select Id</option>
+                                    <option ng-repeat="employeeType in employeeTypeList track by $index" value="{{employeeType.id}}">  {{employeeType.name}} </option>
+                                </select>
+                            </div>
+                        </div> 
+                      </div>-->
+                        
+                        <div class="row">
+                            <div class="form-group" >
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Image</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="file-upload">
+                                    <input  type="file" id="i_file" name="file" ng-file-select="onFileSelect($files)" multiple style="height: 37px;"/>
+                                    <div ng-repeat="files in uploadResult">
+                                    <!-- in case of error show error message with file name-->
+                                    <span class='label label-info' style="color:black;">{{files.name}}</span><br/>
+                                    </div>
+                           </div>
+                        </div>
+                    </div>
+                            <div class="form-group center">
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <a href="#/view-resort-images">
+                                        <button type="button" value="button" name="view-branch" class="btn btn-success">View Images</button>
+                                    </a>
+                                      
+                                  </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

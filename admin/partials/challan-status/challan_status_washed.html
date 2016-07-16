@@ -1,0 +1,117 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Challan
+                            </a>
+                        </li>
+                        <li class="active">
+                            Challan Status
+                        </li>
+                    </ol>
+                </div>
+                <!-- <div class="col-md-10">
+                     <a href="#/view-branches"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing">View Branches</button></a>
+                 </div>-->
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Branch update functionality.</span>
+                        </div>
+                    </div>
+
+                    <form role="form" class="form-horizontal" ng-submit="searchChallan(challan_no_mod)" name="searchCloth" novalidate>
+                        <div class="row">
+                            <div class="col-md-1 col-sm-1 col-xs-1"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <div class="col-md-12 input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hand-o-right"></i> </span>
+                                    <input type="text" placeholder="Enter Challan No" id="challan_no_txt" class="form-control" name="challan_no_txt" ng-model="challan_no_mod" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <button type="submit" class="btn btn-success">Search <i class="fa fa-search"></i></button>
+                            </div>
+                              <div class="col-md-1 col-sm-1 col-xs-1"  ng-show="true == updateData">
+                               <a href="#/challan-status"> <button type="" class="btn btn-success">Reset <i class="fa fa-refresh"></i></button></a>
+                              </div>
+                            
+                        </div><br>
+                        <div class="form-group" ng-show="true == updateData">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                                        <thead>
+                                            <tr>
+                                                <th>Cloth Info ID</th>
+                                                <th>Cloth Type Name</th>
+                                                <th>Item Count</th>
+                                                <th>Package Name</th>
+                                                <th>Weight</th>
+                                                <th>Delivery Date</th>
+                                                <th>Current Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="challan in challanList">
+                                                <td>{{challan.id}}</td>
+                                                <td>{{challan.item_name}}</td>
+                                                <td>{{challan.item_id}}</td>
+                                                <td>{{challan.package_name}}</td>
+                                                <td>{{challan.weight}}</td>
+                                                <td>{{challan.delivery_date}}</td>
+                                                <td>{{challan.delivery_status}}</td>
+                                                <td>{{challan.urgent_required}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-xs-1"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Client Name -><button type="button" name="number" class="btn btn-info">{{client_name}}</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <!--                    <li class="">
+                                        <a href=""><i class="fa fa-home"></i><span class="title">Cloth Status</span><span class="label label-success pull-right ">Add/Edit/Delete</span> </a>
+                                        <ul class="sub-menu">
+                                            <li><a href="#/challan-status"><span class="title"> Add Cloth Status </span><span class="label label-success pull-right ">Add</span></a></li>
+                                        </ul>
+                                    </li>-->
+
+                </div>
+            </div>
+            <div class="panel panel-white" ng-show="updateData == true">
+                <div class="panel-body">
+                    <form role="form" class="form-horizontal" ng-submit="updateChallaStatus(Washing)" name="updateStatus" novalidate>
+                        <div class=" row form-group">
+                            <div class="row">
+                                <div class="col-md-1 col-sm-1 col-xs-1"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+<!--                                    <div class="input-group">
+                                        <span class="input-group-addon">You updated this challan -><button type="button" name="number" class="btn btn-info">{{number_of_times}}</button> number of Times.</span>
+                                    </div>-->
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <button type="submit" value="submit" name="submit" class="btn btn-success" ng-disabled="">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

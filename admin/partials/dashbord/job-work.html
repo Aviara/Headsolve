@@ -1,0 +1,183 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                               Dashboard
+                            </a>
+                        </li>
+                        <li class="active">
+                            Job work
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                         <div class="row form-group container">
+                             <button class="btn btn-success ntn-xl" ng-model="golden" type="button"   ng-click="downloadGoldenSilverPlatPackagesForToday(1)">Golden</button>
+                             <button class="btn btn-success ntn-xl" ng-model="silver" type="button"   ng-click="downloadGoldenSilverPlatPackagesForToday(2)">Silver</button>
+                             <button class="btn btn-success ntn-xl" ng-model="platinum" type="button" ng-click="downloadGoldenSilverPlatPackagesForToday(3)">Platinum</button>
+                             <button class="btn btn-success ntn-xl" ng-app="dryclean" type="button"   ng-click="downloadDrycleanRecordForToday()" >Dry-clean</button>
+                             <button class="btn btn-success ntn-xl" ng-model="dryclean" type="button" ng-click="downloadUrgenciesRecordForToday()">Urgencies</button>
+                         </div>
+                    </div>
+            </div>
+            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="package == true">
+                <div class="panel-body">
+                    <h3 ng-if="silver == true">Data for silver Only</h3>
+                    <h3 ng-if="platinum == true">Data for platinum  Only</h3>
+                    <h3 ng-if="golden == true">Data for Golden Only</h3>
+                    <!--<table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">-->
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Voucher Id</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery date</th>
+                                <th>Delivery Status</th>
+                                <th>Delivery By</th>
+                                <!--                                <th>Operation</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in challanList track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td class="hidden-xs">{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.employee_name}} ({{challan.employee_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_date}}</td>
+                                <td>{{challan.delivery_status}} ({{challan.delivery_status_id}})</td>
+                                <td>{{challan.delivery_by}}</td>
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="dryclean==true">
+                <div class="panel-body">
+                    <h3 ng-if="dryclean == true">Data for Dry-clean Only</h3>
+                    <!--<table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">-->
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery date</th>
+                                <th>Delivery Status</th>
+                                <th>Delivery By</th>
+                                <!--                                <th>Operation</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in challanList track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td class="hidden-xs">{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.employee_name}} ({{challan.employee_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_date}}</td>
+                                <td>{{challan.delivery_status}} ({{challan.delivery_status_id}})</td>
+                                <td>{{challan.delivery_by}}</td>
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
+            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="urgencies==true">
+                <div class="panel-body">
+                    <h3>Data for Urgencies Only</h3>
+                    <!--<table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">-->
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery date</th>
+                                <th>Delivery Status</th>
+                                <th>Delivery By</th>
+                                <!--                                <th>Operation</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in challanList track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td class="hidden-xs">{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.employee_name}} ({{challan.employee_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_date}}</td>
+                                <td>{{challan.delivery_status}} ({{challan.delivery_status_id}})</td>
+                                <td>{{challan.delivery_by}}</td>
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Small modal -->
+       </div>
+    </div>
+</div>
+<script>
+            $(document).ready(function () {
+                  
+                $('.date-picker').datepicker({
+                    format: 'dd-mm-yyyy'
+                });
+                
+                $('.date-range').daterangepicker();
+
+                $('#sample_1').dataTable({
+                    "aoColumnDefs": [{
+                            "aTargets": [0]
+                        }],
+                    "oLanguage": {
+                        "sLengthMenu": "Show _MENU_ Rows",
+                        "sSearch": "",
+                        "oPaginate": {
+                            "sPrevious": "",
+                            "sNext": ""
+                        }
+                    },
+                    "aaSorting": [[1, 'asc']],
+                    "aLengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"] // change per page values here
+                    ],
+                    // set the initial value
+                    "iDisplayLength": 10,
+                });
+                $('#sample_1_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+                // modify table search input
+                $('#sample_1_wrapper .dataTables_length select').addClass("m-wrap small");
+                // modify table per page dropdown
+                $('#sample_1_wrapper .dataTables_length select').select2();
+                // initialzie select2 dropdown
+                $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
+                    /* Get the DataTables object again - this is not a recreation, just a get of the object */
+                    var iCol = parseInt($(this).attr("data-column"));
+                    var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                    oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                });
+            });
+</script>

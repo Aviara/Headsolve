@@ -1,0 +1,14 @@
+.main-content {
+	margin: auto;
+	width: 60%;
+}
+
+body.register {
+  background-image: url("../images/bg.png");
+  background-color: transparent;
+}
+
+.box-register {
+  background: #FFFFFF;
+  border-radius: 5px;
+}

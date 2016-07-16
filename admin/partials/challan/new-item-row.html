@@ -1,0 +1,125 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Cloth Challan 
+                            </a>
+                        </li>
+                        <li class="active">
+                            Cloth Challan 
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">
+                    <a href="#/view-challans"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing">View Challans</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <!--
+                        Form validation by angular JS best example
+                        https://scotch.io/tutorials/angularjs-form-validation
+                    -->
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Client cloth Challan.</span>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li ng-repeat="challanData in challanList">
+                            <div class="row">
+                                <div id="{{challanData.id}}" class="col-md-10 col-sm-10 col-xs-10">
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <div class="form-group" >
+                                            <div class="col-sm-12">
+                                                Item Name
+                                                <select id="item" class="form-control" ng-model="challanData.item_id" name="item[]">
+                                                    <option value="">Select Cloth Type</option>
+                                                    <option ng-repeat="item in itemNameList track by $index" value="{{item.id}}">{{item.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <input type="hidden" name="challan_id" name="challan_id" value="{{challanData.id}}" />
+                                                <label class="control-label" for="quntity">Item Deats.</label>
+                                                <input type="text" placeholder="Enter Itme KG/Items" id="quntity" class="form-control" name="quntity[]" ng-model="challanData.quntity" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4  col-sm-4 col-xs-4">
+                                        <div class="col-sm-12">
+                                            Package  
+                                            <select id="package" class="form-control" ng-model="challanData.package" name="package[]" ng-change="calculateCosting()">
+                                                <option value="">Select Cloth Type</option>
+                                                <option ng-repeat="package in packageList track by $index" value="{{package.id}}">{{package.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2  col-sm-2 col-xs-2">
+                                        <div class="form-group">
+                                            <div class="col-sm-12 is-iron-check">
+                                                <label>Is Iron</label><br/>
+                                                <input type="checkbox" name="is_iron[]" id="is_iron{{$index}}" ng-model="challanData.is_iron" ng-checked="1 == challanData.is_iron" ng-change="calculateCosting()" />
+                                                <label for="is_iron{{$index}}" class="check"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <button name="deleteRow" id="deleteRow" ng-click="challanList.splice($index, 1)" class="btn btn-danger"><i class="fa fa-minus-square fa-3x"></i></button>
+                                </div>
+
+                            </div>
+                            <hr/>
+                        </li>
+                        <li class="center">
+                            <!--<button ng-click="addFormField($event)" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>-->
+                            <button ng-click="addFormField($event)" class="btn btn-success"><i class="fa fa-plus-circle fa-5x"></i></button>
+                        </li>
+                    </ul>
+
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation" class="active"><a href="javascript:void(0)">Package <span class="badge"><h4><i class="fa fa-dropbox"></i>
+                                                {{packageName}}</h4></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation" class="active"><a href="javascript:void(0)">Weight/Items<span class="badge"><h4><i class="fa fa-tachometer"></i>
+                                                {{totalItems}}</h4></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation" class="active"><a href="javascript:void(0)">Total Cost <span class="badge"><h4><i class="fa fa-rupee"></i>{{totalCost}}</h4></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <hr/>
+                    <div class="center">
+                        <button ng-click="saveChallanData($event)" class="btn btn-success"><h2><b>Submit</b></h2></button>
+                    </div>
+                    <div id="displayitems" style="visibility:hidden;">{{challanList}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

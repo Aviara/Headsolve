@@ -1,0 +1,108 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                  Voucher
+                            </a>
+                        </li>
+                        <li class="active">
+                            Out Sourced
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-9">
+                    <a href="#/view-challans"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing">View Challans</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white" style="overflow-y: hidden;">
+                <div class="panel-heading col-md-6 col-sm-6 col-xs-6">
+                    <h4 class="panel-title">Voucher <span class="text-bold">List</span></h4>
+                </div>
+                <div class="panel-heading">
+                    <div class="col-md-6 col-sm-6 col-xs-6 right-align">
+                        <a href="" title=""><button title="Download OutSourced Details" class="btn btn-info"><i class="fa fa-download"> Export Outsourced Details</i></button></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th>Branch Id</th>
+                                <th>To Branch</th>
+                                <th>To Company</th>
+                                <th>Voucher Id</th>
+                                <th>Client Id</th>
+                                <th>Employee Id</th>
+                                <th>Delivery Date</th>
+                                <th>Delivery Time</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="outsource in outsourceList track by $index" id="row-{{outsource.id}}">
+                                <td>{{outsource.id}}</td>
+                                <td>{{outsource.branch_id}}</td>
+                                <td>{{outsource.to_branch_id}}</td>
+                                <td>{{outsource.to_company_id}}</td>
+                                <td>{{outsource.challan_id}}</td>
+                                <td>{{outsource.client_id}}</td>
+                                <td>{{outsource.employee_id}}</td>
+                                <td>{{outsource.date}}</td>
+                                <td>{{outsource.time2}}</td>
+
+                                <td>
+                                    <a class="btn" href="#/add-outsource/edit/{{outsource.id}}">
+                                        <i title="Edit" class="fa fa-pencil"></i>
+                                    </a>
+                                    <a  data-target=".bs-example-modal-sm" data-toggle="modal" class="btn" id="cancellSweetAlert" ng-click="deleteConfirm(outsource.id)">
+                                    <i title="Delete" class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Small modal -->
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Delete Employees</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Do you want to delete the Out Source data?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="button" ng-click="deleteOutsourced();">
+                                Delete IT!
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+
+            <div class="col-md-12 center">
+                <a href="#/view-challans"><button type="button" class="btn btn-info breadcrumb-button" name="view-vouchers">View all Vouchers</button></a>
+            </div>
+        </div>
+    </div>
+</div>

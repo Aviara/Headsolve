@@ -1,0 +1,85 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                               Resort Policies
+                            </a>
+                        </li>
+                        <li class="active">
+                            Add Policies
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">       
+                    <a href="#/view-room-offer"><button type="button" value="button" name="view-room-offer" class="btn btn-success">View Room offer</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <!--
+                        Form validation by angular JS best example
+                        https://scotch.io/tutorials/angularjs-form-validation
+                    -->
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Employee update functionality.</span>
+                        </div>
+                    </div>
+
+                    <form role="form" class="form-horizontal" ng-submit="saveResortPolicies(srp)" name="employeeSave" novalidate>
+                        <div class="row">
+                      		<div class="form-group col-sm-4" ng-class="{ 'has-error': employeeSave.driving_listien_no.$touched && employeeSave.driving_listien_no.$invalid }">
+                            <label class="col-sm-4 control-label" for="roomNumber">Select Resort</label>
+                            <div class="col-sm-8">
+                                <select id="form-field-select-1" class="form-control" ng-model="srp.resort_Id" name="roomTypeId">
+                                    <option value="">Select Resort</option>
+                                    <option value="Single Bed">Sea Side</option>
+                                    <option value="Double bed">Lake view</option>
+                                </select>
+                            </div>
+                          </div>
+							</div>                      
+                  <br>
+                <div class="row">
+                      <div class="form-group col-md-4" ng-class="{ 'has-error': employeeSave.age.$touched && employeeSave.age.$invalid }">
+                            <label class="col-md-4 control-label" for="size">Heading</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="heading" id="age" class="form-control" name="heading" ng-model="srp.heading" ng-value="{{employeeDetails.age}}" ng-bind="{{employeeDetails.age}}" required>
+                            </div>
+                        </div>  
+					</div><br><br>                
+                <div class="row"> 
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': employeeSave.address_line1.$touched && employeeSave.address_line1.$invalid }">
+                            <label class="col-md-4 control-label" for="bedDiscription">Policies Description</label>
+                            <div class="col-md-8">
+                                <textarea name="Offer Description" id="address_line1" ng-model="srp.description"   rows="3" cols="45" placeholder="Enter Descripton of Description"></textarea>
+                            </div>
+                        </div> 
+                     </div><br>
+                        
+                 <div><p class="center"><h3>{{message}}</h3></p></div>
+                     
+                            <div class="form-group center">
+                                <button type="submit" value="submit" name="submit" class="btn btn-success" ng-click="saveRoomOffer(srp)">Submit</button>
+                                <a href="#/view-room-offer"><button type="button" value="button" name="view-room" class="btn btn-success">View Report Policies</button></a>
+ 									 </div>
+ 
+                        <div ng-if="updateData == true ">
+                            <div class="form-group center">
+                                <button type="submit" value="update" name="submit" ng-class="{ 'btn-success' : branchSave.$valid }" class="btn btn-success" ng-disabled="employeeSave.$invalid">Update</button>
+                                <a href="#/view-room-offer"><button type="button" value="button" name="view-room" class="btn btn-success">View Room offer</button></a>
+                            </div>
+                        </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+

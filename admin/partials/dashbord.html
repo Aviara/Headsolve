@@ -1,0 +1,427 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="modal fade" id="panel-config" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">Panel Configuration</h4>
+                    </div>
+                    <div class="modal-body">
+                        Here will be a configuration form
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <!-- end: SPANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <!-- start: PAGE HEADER -->
+            <!-- start: TOOLBAR -->
+            <div class="toolbar row">
+                <div class="col-sm-6 hidden-xs">
+                    <div class="page-header">
+                        <h1>Dashboard <small>overview &amp; stats </small></h1>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <a href="javascript:void(0);" class="back-subviews">
+                        <i class="fa fa-chevron-left"></i> BACK
+                    </a>
+                    <a href="javascript:void(0);" class="close-subviews">
+                        <i class="fa fa-times"></i> CLOSE
+                    </a>
+                </div>
+            </div>
+            <!-- end: TOOLBAR -->
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row" ng-show="isAdmin == false">
+                <div class="col-md-6 col-lg-6 col-sm-6">
+                    <div class="panel panel-default panel-white core-box">
+
+                        <div class="panel-body no-padding">
+                            <div class="partition-green padding-20 text-center core-icon">
+                                <i class="fa fa-arrow-circle-down fa-4x icon-big"></i>
+                            </div>
+                            <a href="#/view-challans"><div class="padding-20 core-content center">
+                                    <span class="notifications-count badge badge-default animated bounce"> 4</span><br><br>
+                                    <span class="notifications-count badge badge-default animated bounce"> <H5>{{status}}</H5></span><br>
+                                    <span class="subtitle hide"> Challan Done</span>
+                                </div></a>
+                        </div>
+                        <div class="panel-footer clearfix no-padding">
+                            <div class=""></div>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-green" data-toggle="tooltip" data-placement="top" title="More Options"><i class="fa fa-cog"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-blue" data-toggle="tooltip" data-placement="top" title="Add Content"><i class="fa fa-plus"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-red" data-toggle="tooltip" data-placement="top" title="View More"><i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="isAdmin == true">
+                <div class="col-md-6 col-lg-3 col-sm-6">
+                    <div class="panel panel-default panel-white core-box">
+
+                        <div class="panel-body no-padding">
+                            <div class="partition-green padding-20 text-center core-icon">
+                                <i class="fa fa-arrow-circle-down fa-4x icon-big"></i>
+                            </div>
+                            <a href="#/pickup-reports"><div class="padding-20 core-content center">
+                                    <span class="notifications-count badge badge-default animated bounce"> {{todayPickupedChallans}}</span><br><br>
+                                    <span class="notifications-count badge badge-default animated bounce"> <H5>PICKUP'S</H5></span><br>
+                                    <span class="subtitle"> Are Remaining</span>
+                                </div></a>
+                        </div>
+                        <div class="panel-footer clearfix no-padding">
+                            <div class=""></div>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-green" data-toggle="tooltip" data-placement="top" title="More Options"><i class="fa fa-cog"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-blue" data-toggle="tooltip" data-placement="top" title="Add Content"><i class="fa fa-plus"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-red" data-toggle="tooltip" data-placement="top" title="View More"><i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-6">
+                    <div class="panel panel-default panel-white core-box">
+
+                        <div class="panel-body no-padding">
+                            <div class="partition-blue padding-20 text-center core-icon">
+                                <i class="fa fa-arrow-circle-up fa-4x icon-big"></i>
+                            </div>
+                            <a href="#/delivery-reports"><div class="padding-20 core-content center">
+                                    <span class="notifications-count badge badge-default animated bounce">{{pickupRowCount}}</span><br><br>
+                                    <span class="notifications-count badge badge-default animated bounce"> <H5>DELIVERIE'S</H5></span><br>
+                                    <span class="subtitle"> Are Remaining</span>
+                                </div></a>
+                        </div>
+                        <div class="panel-footer clearfix no-padding">
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-green" data-toggle="tooltip" data-placement="top" title="More Options"><i class="fa fa-cog"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-blue" data-toggle="tooltip" data-placement="top" title="Add Content"><i class="fa fa-plus"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-red" data-toggle="tooltip" data-placement="top" title="View More"><i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-6">
+                    <div class="panel panel-default panel-white core-box">
+
+                        <div class="panel-body no-padding">
+                            <div class="partition-red padding-20 text-center core-icon">
+                                <i class="fa fa-fighter-jet fa-4x icon-big"></i>
+                            </div>
+                            <a href="#/job-work"><div class="padding-20 core-content center">
+<!--                                    <span class="notifications-count badge badge-default animated bounce"></span><br><br>-->
+                                    <span class="notifications-count badge badge-default animated bounce"> <H5>Job Work</H5></span><br>
+<!--                                    <span class="subtitle"> For Today</span>-->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel-footer clearfix no-padding">
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-green" data-toggle="tooltip" data-placement="top" title="More Options"><i class="fa fa-cog"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-blue" data-toggle="tooltip" data-placement="top" title="Add Content"><i class="fa fa-plus"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-red" data-toggle="tooltip" data-placement="top" title="View More"><i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-sm-6">
+                    <div class="panel panel-default panel-white core-box">
+
+                        <div class="panel-body no-padding">
+                            <div class="partition-azure padding-20 text-center core-icon">
+                                <i class="fa fa-users fa-4x icon-big"></i>
+                            </div>
+                            <a href="#/accounts"> <div class="padding-20 core-content center">
+<!--                                    <span class="notifications-count badge badge-default animated bounce"></span><br><br>-->
+                                    <span class="notifications-count badge badge-default animated bounce"> <H5>Accounts</H5></span><br>
+<!--                                    <span class="subtitle"> Added</span>-->
+                                </div></a>
+                        </div>
+                        <div class="panel-footer clearfix no-padding">
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-green" data-toggle="tooltip" data-placement="top" title="More Options"><i class="fa fa-cog"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-blue" data-toggle="tooltip" data-placement="top" title="Add Content"><i class="fa fa-plus"></i></a>
+                            <a href="javascript:void(0);" class="col-xs-4 padding-10 text-center text-white tooltips partition-red" data-toggle="tooltip" data-placement="top" title="View More"><i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-12 col-md-12" ng-show="isAdmin == true">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-blue">
+                            <div class="panel-body padding-20 text-center">
+                                <div class="space10">
+                                    <h5 class="text-white semi-bold no-margin p-b-5">Today's</h5>
+                                    <h3 class="text-white no-margin"><span class="text-small">Collection</span></h3>
+                                    RS.{{totalPaymentAmmount1}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-body padding-20 text-center">
+                                <div class="space10">
+                                    <h5 class="text-white semi-bold no-margin p-b-5">This month's</h5>
+                                    <h3 class="text-white no-margin"><span class="text-small">Collection</span></h3>
+                                    Rs.{{totalPaymentAmmount2}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="col-md-3">
+                        <div class="panel panel-blue">
+                            <div class="panel-body padding-20 text-center">
+                                <div class="space10">
+                                    <h5 class="text-white semi-bold no-margin p-b-5">Last Month</h5>
+                                    <h3 class="text-white no-margin"><span class="text-small">Collection</span></h3>
+                                    Rs.4893
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-green">
+                            <div class="panel-body padding-20 text-center">
+                                <div class="space10">
+                                    <h5 class="text-white semi-bold no-margin p-b-5">Two Months </h5>
+                                    <h3 class="text-white no-margin"><span class="text-small">Collection</span></h3>
+                                    Rs.145000
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+<!--            <div class="col-md-6 col-lg-6" ng-show="isAdmin == true">
+                <div class="row">
+                    <div class="panel panel-dark">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Delivered Cloths</h4>
+
+                        </div>
+                        <div class="panel-body no-padding">
+                            										<div class="partition-green padding-15 text-center">
+                                                                                                                    <h4 class="no-margin">daily Statistics</h4>
+                                                                                                                    <span class="text-light"></span>
+                                                                                                            </div>
+                            <div id="accordion" class="panel-group accordion accordion-white no-margin">
+                                <div class="panel no-radius">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15">
+                                                <i class="icon-arrow"></i>
+                                                Todays <span class="label label-danger pull-right"></span>
+                                            </a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse in" id="collapseOne">
+                                        <div class="panel-body no-padding partition-light-grey">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Challan No.</th>
+                                                        <th>Address</th>
+                                                        <th>Time</th>
+                                                    </tr>
+                                                    <tr ng-repeat="today1 in todaysDeliveredClothsList track by $index" id="row-{{today1.id}}">
+                                                        <td>{{today1.id}}</td>
+                                                        <td>{{today1.id}}</td>
+                                                        <td>{{today1.id}}</td>
+                                                    </tr>
+                                                </tbody>	
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel no-radius">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
+                                                <i class="icon-arrow"></i>
+                                                Yesterday.
+                                            </a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapseTwo">
+                                        <div class="panel-body no-padding partition-light-grey">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Challan No.</th>
+                                                        <th>Address</th>
+                                                        <th>Time</th>
+                                                    </tr>
+                                                    <tr ng-repeat="yesterday in yesterdaysDeliveredClothsList track by $index" id="row-{{yesterday.id}}">
+                                                        <td>{{yesterday.id}}</td>
+                                                        <td>{{yesterday.id}}</td>
+                                                        <td>{{yesterday.id}}</td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel no-radius">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
+                                                <i class="icon-arrow"></i>
+                                                Two Days Ago.
+                                            </a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapseThree">
+                                        <div class="panel-body no-padding partition-light-grey">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Challan No.</th>
+                                                        <th>Address</th>
+                                                        <th>Time</th>
+                                                    </tr>
+                                                    <tr ng-repeat="twoDaysAgo in twoDaysAgoDeliveredClothsList track by $index" id="row-{{yesterday.id}}">
+                                                        <td>{{twoDaysAgo.id}}</td>
+                                                        <td>{{twoDaysAgo.id}}</td>
+                                                        <td>{{twoDaysAgo.id}}</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+<!--            <div class="col-md-6 col-lg-6" ng-show="isAdmin == true">
+                <div class="panel panel-dark">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">To be Deliver soon</h4>
+
+                    </div>
+                    <div class="panel-body no-padding">
+
+                        <div id="accordion1" class="panel-group accordion accordion-white no-margin">
+                            <div class="panel no-radius">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a href="#collapseOne1" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle padding-15">
+                                            <i class="icon-arrow"></i>
+                                            For Todays <span class="label label-danger pull-right"></span>
+                                        </a></h4>
+                                </div>
+                                <div class="panel-collapse collapse in" id="collapseOne1">
+                                    <div class="panel-body no-padding partition-light-grey">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Challan No.</td>
+                                                    <td>Cloth Status</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr ng-repeat="today in soonTodayDeliveredClothsList track by $index" id="row-{{}}">
+                                                    <td>{{today.id}}</td>
+                                                    <td>{{today.id}}</td>
+                                                    <td>{{today.id}}</td>
+
+                                                </tr>
+                                            </tbody>	
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel no-radius">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a href="#collapseTwo2" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
+                                            <i class="icon-arrow"></i>
+                                            For Tomorrow.
+                                        </a></h4>
+                                </div>
+                                <div class="panel-collapse collapse" id="collapseTwo2">
+                                    <div class="panel-body no-padding partition-light-grey">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Challan No.</td>
+                                                    <td>Cloth Status</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr  ng-repeat="tomarrow in soonTomarrowDeliveredClothsList track by $index" id="row-{{tomarrow}}">
+                                                    <td>{{tomarrow.id}}</td>
+                                                    <td>{{tomarrow.id}}</td>
+                                                    <td>{{tomarrow.id}}</td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel no-radius">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a href="#collapseThree3" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
+                                            <i class="icon-arrow"></i>
+                                            After Two Days.
+                                        </a></h4>
+                                </div>
+                                <div class="panel-collapse collapse" id="collapseThree3">
+                                    <div class="panel-body no-padding partition-light-grey">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Challan No.</td>
+                                                    <td>Cloth Status</td>
+                                                    <td>Date</td>
+                                                </tr>
+                                                <tr  ng-repeat="afterTwoDays in soonAfterTwoDaysDeliveredClothsList track by $index" id="row-{{afterTwoDays}}">
+                                                    <td>{{afterTwoDays.id}}</td>
+                                                    <td>{{afterTwoDays.id}}</td>
+                                                    <td>{{afterTwoDays.id}}</td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+

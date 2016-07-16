@@ -1,0 +1,132 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Cloth Types
+                            </a>
+                        </li>
+                        <li class="active">
+                            Add Cloth Type
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">
+                    <a href="#/view-cloth-types"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing">View Cloth Types</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <!--
+                        Form validation by angular JS best example
+                        https://scotch.io/tutorials/angularjs-form-validation
+                    -->
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Cloth Type update functionality.</span>
+                        </div>
+                    </div>
+
+                    <form role="form" class="form-horizontal" ng-submit="saveClothTypeData(cloth)" name="clothSave" novalidate>
+                        <div class="row">
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': clothSave.name.$touched && clothSave.name.$invalid }">
+                            <label class="col-sm-4 control-label" for="name">Name</label>
+                            <div class="col-sm-8">
+                                <input type="hidden" value="{{cloth.id}}" name="id" />
+                                <input type="text" placeholder="Name" id="name" class="form-control" name="name" ng-model="cloth.name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': clothSave.description.$touched && clothSave.description.$invalid }">
+                            <label class="col-sm-4 control-label" for="description">Description</label>
+                            <div class="col-sm-8"><input type="text" placeholder="Description" id="description" class="form-control" ng-model="cloth.description" name="description" required></div>
+                        </div></div>
+                        <div class="row">
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': clothSave.merger_type.$touched && clothSave.merger_type.$invalid }">
+                            <label class="col-sm-4 control-label" for="merger_type">Merger Type</label>
+                            <div class="col-sm-8">
+                                <select name="merger_type" id="merger_type" ng-model="cloth.merger_type" required>
+                                    <option value="">Select Merger Type</option>
+                                    <option value="1">KG</option>
+                                </select>
+                            </div>
+                            </div>
+                        
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': clothSave.iron_price.$touched && clothSave.iron_price.$invalid }">
+                            <label class="col-sm-4 control-label" for="iron_price">Iron Price</label>
+                            <div class="col-sm-8"><input type="text" placeholder="Enter Iron Price" id="iron_price" class="form-control" ng-model="cloth.iron_price" name="gold_per_kg_price" required></div>
+                        </div></div>
+                        <div class="row">
+                        <div class="alert alert-success col-md-4" role="alert">
+                            <div class="col-md-4"></div>
+                            <h3>Gold</h3>
+                            <div class="col-md-10">
+                            <div class="form-group row" ng-class="{ 'has-error': clothSave.gold_per_kg_price.$touched && clothSave.gold_per_kg_price.$invalid }">
+                               <label class="control-label" for="gold_per_kg_price">Per KG Price</label>
+                               <input type="text" placeholder="Enter Per kg Price" id="gold_per_kg_price" class="form-control" ng-model="cloth.gold_per_kg_price" name="gold_per_kg_price" required>
+                            </div>
+                            <div class="form-group row" ng-class="{ 'has-error': clothSave.gold_per_item_price.$touched && clothSave.gold_per_item_price.$invalid }">
+                                <label class="control-label" for="gold_per_item_price">Per Item Price</label>
+                                <div class=""><input type="text" placeholder="Enter Per Item Price" id="gold_per_item_price" class="form-control" ng-model="cloth.gold_per_item_price" name="gold_per_item_price" required></div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info col-md-4" role="alert">
+                            <div class="col-md-4"></div>
+                              <h3>Silver</h3>
+                              <div class="col-md-10">
+                            <div class="form-group row" ng-class="{ 'has-error': clothSave.silver_per_kg_price.$touched && clothSave.silver_per_kg_price.$invalid }">
+                                <label class="control-label" for="silver_per_kg_price">Per KG Price</label>
+                                <input type="text" placeholder="Enter Per kg Price" id="silver_per_kg_price" class="form-control" ng-model="cloth.silver_per_kg_price" name="silver_per_kg_price" required>
+                            </div>
+
+                            <div class="form-group row" ng-class="{ 'has-error': clothSave.silver_per_item_price.$touched && clothSave.silver_per_item_price.$invalid }">
+                                <label class="control-label" for="silver_per_item_price">Per Item Price</label>
+                                <input type="text" placeholder="Enter Per Item Price" id="silver_per_item_price" class="form-control" ng-model="cloth.silver_per_item_price" name="silver_per_item_price" required>
+                            </div></div>
+                        </div>
+
+                        <div class="alert alert-warning col-md-4" role="alert">
+                            <div class="col-md-4"></div>
+                            <h3>Platinum</h3>
+                            <div class="col-md-10">
+                            <div class="form-group row" ng-class="{ 'has-error': clothSave.platinum_per_kg_price.$touched && clothSave.platinum_per_kg_price.$invalid }">
+                                <label class="control-label" for="platinum_per_kg_price">Per KG Price</label>
+                                <input type="text" placeholder="Enter Per kg Price" id="platinum_per_kg_price" class="form-control" ng-model="cloth.platinum_per_kg_price" name="platinum_per_kg_price" required>
+                            </div>
+
+                            <div class="form-group row" ng-class="{ 'has-error': clothSave.platinum_per_item_price.$touched && clothSave.Platinum_per_item_price.$invalid }">
+                                <label class="control-label" for="platinum_per_item_price">Per Item Price</label>
+                              <input type="text" placeholder="Enter Per Item Price" id="platinum_per_item_price" class="form-control" ng-model="cloth.platinum_per_item_price" name="platinum_per_item_price" required>
+                            </div></div>
+                            
+                        </div>
+                        </div>
+                         <div><p class="center"><h3>{{message}}</h3></p></div>
+                        <div ng-if="updateData == false">
+                            <div class="form-group center">
+                                <button type="submit" value="submit" name="submit" class="btn btn-success" ng-disabled="clothSave.$invalid">Submit</button>
+                                <a href="#/view-cloth-types"><button type="button" value="button" name="view-menu" class="btn btn-success">View Cloth Types</button></a>
+                            </div>
+                        </div>
+
+                        <div ng-if="updateData == true">
+                            <div class="form-group center">
+                                <button type="submit" value="update" name="submit" ng-class="{ 'btn-success' : clothSave.$valid }" class="btn btn-success" ng-disabled="clothSave.$invalid">Update</button>
+                                <a href="#/view-cloth-types"><button type="button" value="button" name="view-menu" class="btn btn-success">View Cloth Types</button></a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

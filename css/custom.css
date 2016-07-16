@@ -1,0 +1,69 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 17, 2016, 5:03:16 PM
+    Author     : ADMIN
+*/
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #7db921 url("images/ui-bg_glass_75_e6e6e6_1x400.html") repeat-x scroll 50% 50%;
+    border: 1px solid #d3d3d3;
+    color: #555;
+    font-weight: normal;
+}
+
+.greenBtn {
+    background-color: #7DB921;
+    border-color: #7DB921;
+    color: #fff;
+}
+
+.greenBtn:hover {
+    background-color: #7DB921;
+    border-color: #7DB921;
+    color: #fff;
+}
+.top-header {
+    background: #7DB921 none repeat scroll 0 0;
+    height: 40px;
+    padding: 5px 0;
+    position: relative;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 999;
+}
+.travel-mega-menu li.weather > a {
+    background: #FF590B none repeat scroll 0 0;
+    color: #fff;
+}
+a:focus{
+    background-color: #7DB921;
+}
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template li:last-child {
+  border-bottom-width: 0; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title,
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2; }
+
+.autocompletedemoCustomTemplate .autocomplete-custom-template .item-title md-icon {
+  height: 18px;
+  width: 18px; }
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+*/

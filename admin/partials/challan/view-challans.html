@@ -1,0 +1,410 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Challanes
+                            </a>
+                        </li>
+                        <li class="active">
+                            Challan Listing
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8" ng-if="thisIsraipurAddChallanForm == true">
+                    <a  href="#/challan"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> Add New Challan</i></button></a>
+                    <a href="#/view-payments"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> View Payments</i></button></a>
+                </div>
+                <div class="col-md-8" ng-if="thisIsPuneAndGoaAddChallanForm == true">
+                    <a  href="#/challan-pune"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> Add New Challana</i></button></a>
+                    <a href="#/view-payments"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> View Payments</i></button></a>
+                </div>
+            </div>
+
+            <div class="panel panel-white" style="overflow-y: hidden;">
+                <div class="panel-heading">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <h4 class="panel-title">Challan <span class="text-bold">List</span></h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6 right-align">
+                        <a href="challan/downloadChallanDetails" title=""><button title="Download Payment details" class="btn btn-info"><i class="fa fa-download"> Export Challanes</i></button></a>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12" ng-if="insertSuccess == true && showMessage == true">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{message}}
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" ng-if="insertSuccess == false && showMessage == true">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{message}}
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <!--                    <table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">-->
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery date</th>
+                                <th>Delivery Status</th>
+                                <th>Delivery By</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in challanList track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td class="hidden-xs">{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.employee_name}} ({{challan.employee_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_date| date: "dd-MM-YYYY HH:mm:ss"}}</td>
+                                <td>{{challan.delivery_status}} ({{challan.delivery_status_id}})</td>
+                                <td>{{challan.delivery_by}}</td>
+                                <td>
+
+                                    <!--
+                                    <a href="#/challan/edit/{{challan.id}}">
+                                                                            <button class="btn btn-blue"><i class="fa fa-pencil"></i> Edit</button>
+                                                                        </a>
+                                                                        <button data-target=".bs-example-modal-sm" data-toggle="modal" class="btn btn-danger" id="cancellSweetAlert" ng-click="deleteConfirm(challan.id)">
+                                                                            <i class="fa fa-minus-circle"></i> Delete
+                                                                        </button>
+                                    
+                                                                        <button data-target=".bs-example-modal-lg" data-toggle="modal" class="btn btn-success" ng-click="showChallanDetails(challan.id)">
+                                                                            <i class="fa fa-eye"></i> View Info
+                                                                        </button>
+                                    -->
+                                    
+                                    <div ng-if="thisIsraipurAddChallanForm == true">
+                                        <a  class="btn" href="#/challan/edit/{{challan.id}}">
+                                        <i title="Edit" class="fa fa-pencil"></i>
+                                        </a>
+                                    <a data-target=".bs-example-modal-sm" data-toggle="modal" class="btn" id="cancellSweetAlert" ng-click="deleteConfirm(challan.id)">
+                                        <i title="Delete" class="fa fa-trash"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-lg" data-toggle="modal" class="btn" ng-click="showChallanDetails(challan.id)">
+                                        <i title="View Challan" class="fa fa-eye"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-lg1" data-toggle="modal" class="btn" ng-click="showChallanDetailslog(challan.id)">
+                                        <i title="View Challan Log" class="fa fa-list-ol"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-time-logs" data-toggle="modal" class="btn" ng-click="showChallanTimelogs(challan.id)">
+                                        <i title="View Challan Log" class="fa fa-clock-o"></i>
+                                    </a>
+                                      <a  class="btn" href="#/add-outsource/add/{{challan.id}}">
+                                        <i title="Out-Source" class="fa fa-arrow-circle-up"></i>
+                                        </a>    
+                                    </div>
+                                    
+                                    <div ng-if="thisIsPuneAndGoaAddChallanForm == true"><a  class="btn" href="#/challan-pune/edit/{{challan.id}}">
+                                        <i title="Edit" class="fa fa-pencil"></i>
+                                        </a>
+                                    <a data-target=".bs-example-modal-sm" data-toggle="modal" class="btn" id="cancellSweetAlert" ng-click="deleteConfirm(challan.id)">
+                                        <i title="Delete" class="fa fa-trash"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-lg" data-toggle="modal" class="btn" ng-click="showChallanDetails(challan.id)">
+                                        <i title="View Challan" class="fa fa-eye"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-lg1" data-toggle="modal" class="btn" ng-click="showChallanDetailslog(challan.id)">
+                                        <i title="View Challan Log" class="fa fa-list-ol"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-time-logs" data-toggle="modal" class="btn" ng-click="showChallanTimelogs(challan.id)">
+                                        <i title="View Challan Log" class="fa fa-clock-o"></i>
+                                    </a>
+                                     <a  class="btn" href="#/add-outsource/add/{{challan.id}}">
+                                        <i title="Out-Source" class="fa fa-arrow-circle-up"></i>
+                                        </a>     
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Small modal -->
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Delete Client</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Do you want to delete the Package?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="button" ng-click="deleteClothType();">
+                                Delete IT!
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Challan Details...!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- start: RESPONSIVE TABLE PANEL -->
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading buttons-widget">
+                                                <button class="btn btn-default">Challan ID : <label class="btn btn-success">{{challan_id}}</label></button>
+                                                <button class="btn btn-default">Client Name : <label class="btn btn-success">{{client_name}}</label></button>
+                                                <button class="btn btn-default">Item Weight : <label class="btn btn-success">{{weight}}</label></button>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-hover" id="sample-table-1">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Sr/No</th>
+                                                                <th>Item Details</th>
+                                                                <!--                                                                <th>Weight (KG)</th>-->
+                                                                <th>Package Name</th>
+                                                                <th>Is Iron</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="itemData in challanItemList track by $index">
+                                                                <td>{{itemData.id}}</td>
+                                                                <td>
+                                                                    <table class="table table-bordered table-hover" id="sample-table-2">
+                                                                        <tr><th>Item Name</th><th>Quntity</th></tr>
+                                                                        <tr><td>{{itemData.item_name}} ({{itemData.item_id}})</td><td>{{itemData.total_item_count}}</td>
+                                                                    </table>
+                                                                </td>
+                                                                <!--                                                                <td>{{itemData.weight}}</td>-->
+                                                                <td>{{itemData.package_name}} ({{itemData.package_id}})</td>
+                                                                <td><button class="btn btn-warning">{{1 == itemData.is_iron ? 'Yes' : 'Yes'}}</button></td>
+                                                                <td><span class="label label-sm label-success">{{itemData.delivery_status}}</span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end: RESPONSIVE TABLE PANEL -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button" id="closeButton">Close</button>
+                            <button class="btn btn-primary" type="button" ng-click="editChallanView()">Edit Challan</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Challan Details...!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="" ng-show="dataNotAvialble == true">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- start: RESPONSIVE TABLE PANEL -->
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading buttons-widget">
+                                                <button class="btn btn-default">Challan ID: <label class="btn btn-success">{{challan_id}}</label></button>
+                                                <button class="btn btn-default">Client Name: <label class="btn btn-success">{{client_name}}</label></button>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-hover" id="sample-table-1">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Sr/No</th>
+                                                                <th>Delivery Status</th>
+                                                                <th>Old Delivery Status</th>
+                                                                <th>Created By</th>
+                                                                <th>Created On</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="statusData in challanStatusLogList track by $index">
+                                                                <td>{{statusData.id}}</td>
+                                                                <td>{{statusData.current_status}}</td>
+                                                                <td>{{statusData.old_delivery_status_id}}</td>
+                                                                <td>{{statusData.created_by}}</td>
+                                                                <td>{{statusData.created_on}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end: RESPONSIVE TABLE PANEL -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="" ng-show="dataNotAvialble == false">
+                                <span class="alert alert-danger col-md-12 col-sm-12 col-xs-12">Challan Log not available to display.</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button" id="closeButton">Close</button>
+                            <button class="btn btn-primary" type="button" ng-click="editChallanView()" ng-show="dataNotAvialble == true">Edit Challan</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+
+            <div  class="modal fade bs-example-modal-time-logs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Challan Time Details...!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="" ng-show="dataNotAvialble == true">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- start: RESPONSIVE TABLE PANEL -->
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading buttons-widget">
+                                                <button class="btn btn-default">Challan ID: <label class="btn btn-success">{{challan_id}}</label></button>
+                                                <button class="btn btn-default">Client Name: <label class="btn btn-success">{{client_name}}</label></button>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-hover" id="sample-table-1">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Sr/No</th>
+                                                                <th>Laundry Department</th>
+                                                                <th>Log Details</th>
+                                                                <th>Created By</th>
+                                                                <th>Created On</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="timeData in challanTimeLogList track by $index">
+                                                                <td>{{timeData.id}}</td>
+                                                                <td>{{timeData.current_status}}</td>
+                                                                <td>
+                                                                    <table class="table table-bordered table-hover">
+                                                                        <tr>
+                                                                            <th>Started On</th>
+                                                                            <th>Completed On</th>
+                                                                            <th>Time Taken</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>{{timeData.start_on}}</td>
+                                                                            <td>{{timeData.completed_on}}</td>
+                                                                            <td>{{timeData.time_taken}}</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                                <td>{{timeData.employee_name}} ({{timeData.created_by}})</td>
+                                                                <td>{{timeData.created_on}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end: RESPONSIVE TABLE PANEL -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="" ng-show="dataNotAvialble == false">
+                                <span class="alert alert-danger col-md-12 col-sm-12 col-xs-12">Challan Log not available to display.</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button" id="closeButton">Close</button>
+                            <button class="btn btn-primary" type="button" ng-click="editChallanView()" ng-show="dataNotAvialble == true">Edit Challan</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+
+            <div class="col-md-12 center">
+                <a href="#/challan"><button type="button" class="btn btn-info breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> Add New Challan</i></button></a>
+                <a href="#/view-payments"><button type="button" class="btn btn-info breadcrumb-button" name="view-listing"><i class="fa fa-plus-circle"> View Payments</i></button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+            $(document).ready(function () {
+                $('#sample_1').dataTable({
+                    "aoColumnDefs": [{
+                            "aTargets": [0]
+                        }],
+                    "oLanguage": {
+                        "sLengthMenu": "Show _MENU_ Rows",
+                        "sSearch": "",
+                        "oPaginate": {
+                            "sPrevious": "",
+                            "sNext": ""
+                        }
+                    },
+                    "aaSorting": [[1, 'asc']],
+                    "aLengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"] // change per page values here
+                    ],
+                    // set the initial value
+                    "iDisplayLength": 10,
+                });
+                $('#sample_1_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+                // modify table search input
+                $('#sample_1_wrapper .dataTables_length select').addClass("m-wrap small");
+                // modify table per page dropdown
+                $('#sample_1_wrapper .dataTables_length select').select2();
+                // initialzie select2 dropdown
+                $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
+                    /* Get the DataTables object again - this is not a recreation, just a get of the object */
+                    var iCol = parseInt($(this).attr("data-column"));
+                    var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                    oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                });
+            });</script>

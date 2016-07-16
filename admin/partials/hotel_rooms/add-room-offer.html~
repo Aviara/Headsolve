@@ -1,0 +1,103 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                               Hotel Rooms
+                            </a>
+                        </li>
+                        <li class="active">
+                            Add Rooms
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">       
+                    <a href="#/view-room"><button type="button" value="button" name="view-branch" class="btn btn-success">View Rooms</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <!--
+                        Form validation by angular JS best example
+                        https://scotch.io/tutorials/angularjs-form-validation
+                    -->
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Employee update functionality.</span>
+                        </div>
+                    </div>
+
+                    <form role="form" class="form-horizontal" ng-submit="saveRoomOffer(srog-)" name="employeeSave" novalidate>
+                        <div class="row">
+                      		<div class="form-group col-sm-4" ng-class="{ 'has-error': employeeSave.driving_listien_no.$touched && employeeSave.driving_listien_no.$invalid }">
+                            <label class="col-sm-4 control-label" for="roomNumber">Room Number</label>
+                            <div class="col-sm-8">
+                                <select id="form-field-select-1" class="form-control" ng-model="sro.resortId" name="roomTypeId">
+                                    <option value="">Select Room Type</option>
+                                    <option value="Single Bed">Single Bed</option>
+                                    <option value="Double bed">Double bed</option> 
+                                    <option value="Family Room">Family Room</option> 
+                                    <option value="Luxury Room">Luxury Room</option>
+                                </select>
+                            </div>
+                          </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-4 control-label" for="roomTypeId">Select Room No</label>
+                            <div class="col-md-8">
+                              <select id="form-field-select-1" class="form-control" ng-model="sro.roomId" name="roomTypeId">
+                                    <option value="">Select Room No</option>
+                                    <option value="Single Bed">Single Bed</option>
+                                    <option value="Double bed">Double bed</option> 
+                                    <option value="Family Room">Family Room</option> 
+                                    <option value="Luxury Room">Luxury Room</option>
+                                </select>
+                             <div id="errorMiddleName"></div>
+                            </div>
+                        </div>
+								
+                     </div>                      
+                  		<br>
+                       
+                      <div class="row">
+                      <div class="form-group col-md-4" ng-class="{ 'has-error': employeeSave.age.$touched && employeeSave.age.$invalid }">
+                            <label class="col-md-4 control-label" for="size">Heading</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="Heading" id="age" class="form-control" name="size" ng-model="sro.heading" ng-value="{{employeeDetails.age}}" ng-bind="{{employeeDetails.age}}" required>
+                            </div>
+                        </div>  
+                        
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': employeeSave.address_line1.$touched && employeeSave.address_line1.$invalid }">
+                            <label class="col-md-4 control-label" for="bedDiscription">Offer Description</label>
+                            <div class="col-md-8">
+                                <textarea name="Offer Description" id="address_line1" ng-model="sro.bedDiscription"   rows="3" cols="45" placeholder="Enter Descripton of Description"></textarea>
+                            </div>
+                        </div> 
+                     </div><br><br>
+                   </div>
+                        
+                 <div><p class="center"><h3>{{message}}</h3></p></div>
+                        <div>
+                            <div class="form-group center">
+                                <button type="submit" value="submit" name="submit" class="btn btn-success" ng-click="saveRoomOffer(sro)">Submit</button>
+                                <a href="#/view-room-offer"><button type="button" value="button" name="view-room" class="btn btn-success">View Room Offer</button></a>
+ 									 </div>
+                        </div>
+
+                        <div ng-if="updateData == true ">
+                            <div class="form-group center">
+                                <button type="submit" value="update" name="submit" ng-class="{ 'btn-success' : branchSave.$valid }" class="btn btn-success" ng-disabled="employeeSave.$invalid">Update</button>
+                                <a href="#/view-room"><button type="button" value="button" name="view-room" class="btn btn-success">View Room</button></a>
+                            </div>
+                        </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+

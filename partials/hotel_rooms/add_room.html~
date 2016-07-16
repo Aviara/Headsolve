@@ -1,0 +1,145 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                               Hotel Rooms
+                            </a>
+                        </li>
+                        <li class="active">
+                            Add Rooms
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-8">       
+                    <a href="#/view-room"><button type="button" value="button" name="view-branch" class="btn btn-success">View Rooms</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <!--
+                        Form validation by angular JS best example
+                        https://scotch.io/tutorials/angularjs-form-validation
+                    -->
+                    <div ng-if="update = false">
+                        <div class="form-group center">
+                            <span>Employee update functionality.</span>
+                        </div>
+                    </div>
+
+                    <form role="form" class="form-horizontal" ng-submit="saveRoom(hrm)" name="employeeSave" novalidate>
+                        <div class="row">
+                      		<div class="form-group col-sm-4" ng-class="{ 'has-error': employeeSave.driving_listien_no.$touched && employeeSave.driving_listien_no.$invalid }">
+                            <label class="col-sm-4 control-label" for="roomNumber">Room Number</label>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="roomNumber" id="driving_listien_no" class="form-control" name="roomNumber" ng-model="hrm.roomNumber" ng-value="{{employeeDetails.driving_listien_no}}" ng-bind="{{employeeDetails.driving_listien_no}}" required>
+                            </div>
+                          </div>
+                        <div class="form-group col-md-4">
+                            <label class="col-md-4 control-label" for="roomTypeId">Room type</label>
+                            <div class="col-md-8">
+                              <select id="form-field-select-1" class="form-control" ng-model="hrm.roomTypeId" name="roomTypeId">
+                                    <option value="">Select Room Type</option>
+                                    <option value="Single Bed">Single Bed</option>
+                                    <option value="Double bed">Double bed</option> 
+                                    <option value="Family Room">Family Room</option> 
+                                    <option value="Luxury Room">Luxury Room</option>
+                                </select>
+                             <div id="errorMiddleName"></div>
+                            </div>
+                        </div>
+								<div class="form-group col-md-4" ng-class="{ 'has-error': employeeSave.age.$touched && employeeSave.age.$invalid }">
+                            <label class="col-md-4 control-label" for="size">Size</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="size" id="age" class="form-control" name="size" ng-model="hrm.size" ng-value="{{employeeDetails.age}}" ng-bind="{{employeeDetails.age}}" required>
+                            </div>
+                        </div>  
+                     </div>                      
+                  		<br>
+                        <div class="row">
+                         <div class="form-group col-md-6" ng-class="{ 'has-error': employeeSave.mobile_no.$touched && employeeSave.mobile_no.$invalid }">
+                            <label class="col-md-4 control-label" for="costPerNight">Cost Per Night</label>
+                             <div class="col-md-8">
+
+                                <input type="text" placeholder="costPerNight" id="lastname" class="form-control" name="costPerNight" ng-model="hrm.costPerNight" ng-value="{{employeeDetails.last_name}}" ng-bind="{{employeeDetails.last_name}}" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': employeeSave.email_id.$touched && employeeSave.email_id.$invalid }">
+                            <label class="col-md-4 control-label" for="costForExtraBed">Cost For Extra bed</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="costForExtraBed" id="costForExtraBed" class="form-control" name="costForExtraBed" ng-model="hrm.costForExtraBed" ng-value="{{employeeDetails.last_name}}" ng-bind="{{employeeDetails.last_name}}" required>
+                             <div id="errorLastName"></div>
+                            </div>
+                        </div>
+ 							</div><br>
+                     
+                      <div class="row">
+                        <div class="form-group col-md-6" ng-class="{ 'has-error': employeeSave.address_line1.$touched && employeeSave.address_line1.$invalid }">
+                            <label class="col-md-4 control-label" for="bedDiscription">Bed Description</label>
+                            <div class="col-md-8">
+                                <textarea name="bedDiscription" id="address_line1" ng-model="hrm.bedDiscription"   rows="3" cols="45" placeholder="Enter Descripton of Bed"></textarea>
+                            </div>
+                        </div> 
+                          <div class="form-group col-md-6" ng-class="{ 'has-error': employeeSave.employee_type_id.$touched && employeeSave.employee_type_id.$invalid }">
+                            <label class="col-md-8 control-label" for="url">View</label>
+                            <div class="col-md-4">
+                                <select id="form-field-select-1" class="form-control" ng-model="hrm.view" name="view">
+                                    <option value="">Select View</option>
+                                    <option value="Sea View">Sea View</option>
+                                    <option value="Loan View">Loan View</option>
+                                    <option value="Loan View">Road Side</option>
+                                </select>
+                            </div>
+                        </div>
+                        </div><br><br>
+							</div>
+                        
+                     <div class="row">
+                         <div class="form-group col-md-5" ng-class="{ 'has-error': employeeSave.mobile_no.$touched && employeeSave.mobile_no.$invalid }">
+                            <label class="col-md-4 control-label" for="noofRooms">No of Rooms</label>
+                            <div class="col-md-8">
+                                    <input type="text" placeholder="Number of Rooms" id="No of Rooms" class="form-control" name="noofRooms" ng-model="hrm.noofRooms" ng-value="{{employeeDetails.mobile_no}}" ng-bind="{{employeeDetails.mobile_no}}" required>
+                            </div>
+                        </div>
+                      <!--  <div class="form-group col-md-5" ng-class="{ 'has-error': employeeSave.email_id.$touched && employeeSave.email_id.$invalid }">
+                            <label class="col-md-4 control-label" for="roomStatus">Room Status</label>
+                            <div class="col-md-8">
+                                <div class="input-group col-md-8">
+										<select id="form-field-select-1" class="form-control" ng-model="hrm.roomStatus" name="view">
+                                    <option value="">Select Status</option>
+                                    <option value="Sea View">Available</option>
+                                    <option value="Loan View">Garden View</option>
+                                    <option value="Loan View">Road Side</option>
+                                    <!--<option ng-repeat="employeeType in employeeTypeList track by $index" value="{{employeeType.id}}">  {{employeeType.name}} </option>-->
+                                <!--</select>	                                
+                            </div>
+                      	  </div>
+                        </div>-->
+                     </div>
+                        <div><p class="center"><h3>{{message}}</h3></p></div>
+                        <div>
+                            <div class="form-group center">
+                                <button type="submit" value="submit" name="submit" class="btn btn-success" ng-click="saveRoom(hrm)">Submit</button>
+                                <a href="#/view-rooom"><button type="button" value="button" name="view-room" class="btn btn-success">View Room</button></a>
+ 									 </div>
+                        </div>
+
+                        <div ng-if="updateData == true ">
+                            <div class="form-group center">
+                                <button type="submit" value="update" name="submit" ng-class="{ 'btn-success' : branchSave.$valid }" class="btn btn-success" ng-disabled="employeeSave.$invalid">Update</button>
+                                <a href="#/view-rooom"><button type="button" value="button" name="view-room" class="btn btn-success">View Room</button></a>
+                            </div>
+                        </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,108 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <div class="container">
+            <!-- start: PAGE HEADER -->
+            <!-- start: TOOLBAR -->
+            <div class="toolbar row">
+                <div class="col-sm-6 hidden-xs">
+                    <div class="page-header">
+                        <h1>PickUp <small>overview &amp; stats </small></h1>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <a href="javascript:void(0);" class="back-subviews">
+                        <i class="fa fa-chevron-left"></i> BACK
+                    </a>
+                    <a href="javascript:void(0);" class="close-subviews">
+                        <i class="fa fa-times"></i> CLOSE
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-12">
+                <div class="col-md-3 col-sm-6 col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                        <input type="text" ng-model="from_date" class="form-control date-picker" placeholder="Select From Date">
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                        <input type="text" ng-model="to_date" class="form-control date-picker" placeholder="Select To Date">
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-1 center">
+                    <button class="btn btn-success" ng-click="pickupDetails()"> Search PickUp</button>
+                </div>
+            </div>
+
+            <div class="row left-align">
+               
+            </div>
+
+            <div class="row">
+                <hr/>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Challan Id</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery date</th>
+                                <th>Delivery Status</th>
+                                <th>Delivery By</th>
+                                <th class="hide">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in challanList track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td class="hidden-xs">{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.employee_name}} ({{challan.employee_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_date| date: "dd-MM-YYYY HH:mm:ss"}}</td>
+                                <td>{{challan.delivery_status}} ({{challan.delivery_status_id}})</td>
+                                <td>{{challan.delivery_by}}</td>
+                                <td class="hide">
+                                    <a class="btn" href="#/challan/edit/{{challan.id}}">
+                                        <i title="Edit" class="fa fa-pencil"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-sm" data-toggle="modal" class="btn" id="cancellSweetAlert" ng-click="deleteConfirm(challan.id)">
+                                        <i title="Delete" class="fa fa-trash"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-lg" data-toggle="modal" class="btn" ng-click="showChallanDetails(challan.id)">
+                                        <i title="View Challan" class="fa fa-eye"></i>
+                                    </a>
+                                    <a data-target=".bs-example-modal-lg1" data-toggle="modal" class="btn" ng-click="showChallanDetailslog(challan.id)">
+                                        <i title="View Challan Log" class="fa fa-list-ol"></i>
+                                    </a>
+
+                                    <a data-target=".bs-example-modal-time-logs" data-toggle="modal" class="btn" ng-click="showChallanTimelogs(challan.id)">
+                                        <i title="View Challan Log" class="fa fa-clock-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.date-picker').datepicker({
+      format: 'dd-mm-yyyy'
+    });
+</script>

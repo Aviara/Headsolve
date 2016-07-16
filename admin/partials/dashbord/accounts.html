@@ -1,0 +1,342 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                               Dashboard
+                            </a>
+                        </li>
+                        <li class="active">
+                            Job work
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="panel panel-white">
+                <div class="panel-body">
+                         <div class="row form-group container">
+                             
+                             <button class="btn btn-light-orange ntn-xl col-md-2" ng-model="byEmployee" type="button"   ng-click="makeFirstTabActive()">BY Employee</button>
+                             <button class="btn btn-light-azure ntn-xl col-md-2" ng-model="holeDayCollection" type="button"   ng-click="laundrysHoleCollectionForToday()">Todays Whole Collection</button>
+                             <div class="col-md-1 "><p style="font-size:20px" class="center">&</p></div>
+                             <button class="btn btn-dark-yellow ntn-xl col-md-2" ng-model="totalCollection" type="button" ng-click="makeThirdTabActive()">Total Collection</button>
+                
+                 <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                        <input type="text" ng-model="from_date" class="form-control date-picker" placeholder="Select Date">
+                   
+                    </div>
+                 </div> 
+
+                 <div class="col-md-2 col-sm-6 col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                        <input type="text" ng-model="to_date" class="form-control date-picker" placeholder="Select Date">
+                    </div>
+                 </div>
+                   <button class="btn btn-success ntn-xl col-md-1" ng-model="byEmployee" type="button"   ng-click="dateRangePaymentReport()">OK</button>
+
+           
+                         </div>
+                </div>
+            </div>
+<!--            <div class="pabel panel-white" id="payment-details">
+                    
+            </div>
+            -->
+            
+            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="firsttab == true">
+                <h3>Todays Collection by Employee Id</h3>
+                <form role="form" class="form-horizontal" ng-submit="searchEmployee(employee_id)" name="paymentEmployee" novalidate>
+                        <div class="row">
+                            <div class="col-md-1 col-sm-1 col-xs-1"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <div class="col-md-12 input-group">
+                                    <span class="input-group-addon"><i class="fa fa-hand-o-right"></i> </span>
+                                    <input type="text" placeholder="Enter Employee ID" id="employee_id" class="form-control" name="employee_id" ng-model="employee_id" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <button type="submit" class="btn btn-success">Search <i class="fa fa-search"></i></button>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"  ng-show="true == updateData">
+                                <a href="#/challan-status"> <button type="" class="btn btn-success">Reset <i class="fa fa-refresh"></i></button></a>
+                            </div>
+                        </div>
+                </form>
+
+                <div class="panel-body">
+                    <!--<table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">-->
+                    <table class="table table-striped table-bordered table-hover table-full-width">
+                                <thead>
+                                    <tr>
+                                        <th>Payment ID</th>
+                                        <th>Voucher ID</th>
+                                        <th>Client Name</th>
+                                        <th>Total Amount</th>
+                                        <th>Remaining Amount</th>
+                                        <th>Paid Amount</th>
+                                        <th>Completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="payment in payemnts track by $index" id="row-{{payment.id}}" ng-class="{ 'success': 0 == payment.remaining_amount }">
+                                        <td>{{payment.id}}</td>
+                                        <td class="hidden-xs">
+                                            <ul class="nav nav-pills" role="tablist">
+                                                <li role="presentation" class="active">
+                                                    <a href="#/challan/edit/{{payment.challan_id}}" title="View challan details.">
+                                                        <span class="badge">{{payment.challan_id}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{payment.client_name}} ({{payment.client_id}})</td>
+                                        <td>{{payment.total_amount}}</td>
+                                        <td>{{payment.remaining_amount}}</td>
+                                        <td>{{payment.paid_amount}}</td>
+                                        <td>{{payment.is_completed}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>{{totalPaymentAmmount}}</th>
+                                        <th>{{remainingPaymentAmmount}}</th>
+                                        <th>{{paidPaymentAmmount}}</th>
+                                        <th>{{totalCompletedPaymentAmmount}}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                </div>
+            </div>
+            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="secondttab == true">
+                <h3>Todays whole Collection</h3>
+                <div class="panel-body">
+                   
+                    <!--<table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">-->
+                    <table class="table table-striped table-bordered table-hover table-full-width" >
+                                <thead>
+                                    <tr>
+                                        <th>Payment ID</th>
+                                        <th>Challan ID</th>
+                                        <th>Client Name</th>
+                                        <th>Total Amount</th>
+                                        <th>Remaining Amount</th>
+                                        <th>Paid Amount</th>
+                                        <th>Completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="payment1 in payemnts1 track by $index" id="row-{{payment1.id}}" ng-class="{ 'success': 0 == payment1.remaining_amount }">
+                                        <td>{{payment1.id}}</td>
+                                        <td class="hidden-xs">
+                                            <ul class="nav nav-pills" role="tablist">
+                                                <li role="presentation" class="active">
+                                                    <a href="#/challan/edit/{{payment1.challan_id}}" title="View challan details.">
+                                                        <span class="badge">{{payment1.challan_id}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{payment1.client_name}} ({{payment1.client_id}})</td>
+                                        <td>{{payment1.total_amount}}</td>
+                                        <td>{{payment1.remaining_amount}}</td>
+                                        <td>{{payment1.paid_amount}}</td>
+                                        <td>{{payment1.is_completed}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>{{totalPaymentAmmount1}}</th>
+                                        <th>{{remainingPaymentAmmount1}}</th>
+                                        <th>{{paidPaymentAmmount1}}</th>
+                                        <th>{{totalCompletedPaymentAmmount1}}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                </div>
+            </div>
+            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="thirdtab == true" id="sample_3">
+           <h3>Total collection from date to date </h3>
+                <div class="panel-body">
+                    <!--<table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">-->
+                    <table class="table table-striped table-bordered table-hover table-full-width" >
+                                <thead>
+                                    <tr>
+                                        <th>Payment ID</th>
+                                        <th>Challan ID</th>
+                                        <th>Client Name</th>
+                                        <th>Total Amount</th>
+                                        <th>Remaining Amount</th>
+                                        <th>Paid Amount</th>
+                                        <th>Completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="payment2 in payemnts2 track by $index" id="row-{{payment2.id}}" ng-class="{ 'success': 0 == payment2.remaining_amount }">
+                                        <td>{{payment2.id}}</td>
+                                        <td class="hidden-xs">
+                                            <ul class="nav nav-pills" role="tablist">
+                                                <li role="presentation" class="active">
+                                                    <a href="#/challan/edit/{{payment2.challan_id}}" title="View challan details.">
+                                                        <span class="badge">{{payment2.challan_id}}</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{payment2.client_name}} ({{payment2.client_id}})</td>
+                                        <td>{{payment2.total_amount}}</td>
+                                        <td>{{payment2.remaining_amount}}</td>
+                                        <td>{{payment2.paid_amount}}</td>
+                                        <td>{{payment2.is_completed}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>{{totalPaymentAmmount2}}</th>
+                                        <th>{{remainingPaymentAmmount2}}</th>
+                                        <th>{{paidPaymentAmmount2}}</th>
+                                        <th>{{totalCompletedPaymentAmmount2}}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                </div>
+            </div>
+            
+            
+<!--            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="dryclean==true">
+                <h3>Todays whole collection</h3>
+
+                <div class="panel-body">
+                    <h3 ng-if="dryclean == true">Data for Dry-clean Only</h3>
+                    <table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery date</th>
+                                <th>Delivery Status</th>
+                                <th>Delivery By</th>
+                                                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in challanList track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td class="hidden-xs">{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.employee_name}} ({{challan.employee_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_date}}</td>
+                                <td>{{challan.delivery_status}} ({{challan.delivery_status_id}})</td>
+                                <td>{{challan.delivery_by}}</td>
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>  -->
+<!--            <div class="panel panel-white" style="overflow-y: hidden;" ng-if="urgencies==true">
+                <h3>Collection reports.</h3>
+
+                <div class="panel-body">
+                    <h3>Data for Urgencies Only</h3>
+                    <table id="sample_1" class="table table-striped table-bordered table-hover table-full-width">
+                    <table datatable="ng" dt-options="dtOptions" class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th>Client Name</th>
+                                <th>Employee Name</th>
+                                <th>Pick Up Date</th>
+                                <th>Delivery Estimate date</th>
+                                <th>Delivery date</th>
+                                <th>Delivery Status</th>
+                                <th>Delivery By</th>
+                                                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="challan in challanList track by $index" id="row-{{challan.id}}">
+                                <td>{{challan.id}}</td>
+                                <td class="hidden-xs">{{challan.client_name}} ({{challan.client_id}})</td>
+                                <td>{{challan.employee_name}} ({{challan.employee_id}})</td>
+                                <td>{{challan.pick_up_date}}</td>
+                                <td>{{challan.delivery_estimate_date}}</td>
+                                <td>{{challan.delivery_date}}</td>
+                                <td>{{challan.delivery_status}} ({{challan.delivery_status_id}})</td>
+                                <td>{{challan.delivery_by}}</td>
+                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>-->
+
+            <!-- Small modal -->
+       </div>
+    </div>
+</div>
+<script>
+            $(document).ready(function () {
+                  
+                $('.date-picker').datepicker({
+                    format: 'dd-mm-yyyy'
+                });
+                
+                $('.date-range').daterangepicker();
+
+                $('#sample_1').dataTable({
+                    "aoColumnDefs": [{
+                            "aTargets": [0]
+                        }],
+                    "oLanguage": {
+                        "sLengthMenu": "Show _MENU_ Rows",
+                        "sSearch": "",
+                        "oPaginate": {
+                            "sPrevious": "",
+                            "sNext": ""
+                        }
+                    },
+                    "aaSorting": [[1, 'asc']],
+                    "aLengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"] // change per page values here
+                    ],
+                    // set the initial value
+                    "iDisplayLength": 10,
+                });
+                $('#sample_1_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
+                // modify table search input
+                $('#sample_1_wrapper .dataTables_length select').addClass("m-wrap small");
+                // modify table per page dropdown
+                $('#sample_1_wrapper .dataTables_length select').select2();
+                // initialzie select2 dropdown
+                $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
+                    /* Get the DataTables object again - this is not a recreation, just a get of the object */
+                    var iCol = parseInt($(this).attr("data-column"));
+                    var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                    oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                });
+            });
+</script>
+<!--<script>
+    $('.date-picker').datepicker({
+      format: 'dd-mm-yyyy'
+    });
+</script>-->

@@ -1,0 +1,94 @@
+<!-- start: MAIN CONTAINER -->
+<div class="main-container inner">
+    <!-- start: PAGE -->
+    <div class="main-content">
+        <!-- start: PANEL CONFIGURATION MODAL FORM -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">
+                                Resort Useful Info
+                            </a>
+                        </li>
+                        <li class="active">
+                            Resort Listing
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-9">
+                    <a href="#/add-resort-useful-info"><button type="button" class="btn btn-success breadcrumb-button" name="view-listing">Add Resort Useful Info</button></a>
+                </div>
+            </div>
+            <div class="panel panel-white" style="overflow-y: hidden;">
+                <div class="panel-heading col-md-6 col-sm-6 col-xs-6">
+                    <h4 class="panel-title">Resort Useful Info <span class="text-bold">List</span></h4>
+                </div>
+                
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover table-full-width" id="sample_1">
+                        <thead>
+                            <tr>
+                                <th>S.N/ID</th>
+                                <th>Resort Name</th>
+                                <th>Heading</th>
+                                <th>Description</th>
+                                <th>>> ( Edit / Delete ) <<</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="resortinfo in resortinfolist1 track by $index" id="row-{{resortinfo.id}}">
+                                <td>{{resortinfo.id}}</td>
+                                <td>{{resortinfo.name}}</td>
+                                <td>{{resortinfo.heading}}</td>
+                                <td>{{resortinfo.description}}</td>
+                                <td>
+                                    <a class="btn" href="#/add-resort-useful-info/edit/{{resortinfo.id}}">
+                                        <i title="Edit" class="fa fa-pencil"></i>
+                                    </a>
+                                    <a  data-target=".bs-example-modal-sm" data-toggle="modal" class="btn" id="cancellSweetAlert" ng-click="deleteConfirm(resortinfo.id)">
+                                       <i title="Delete" class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Small modal -->
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                                ×
+                            </button>
+                            <h4 id="myLargeModalLabel" class="modal-title">Delete Resort Useful Info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Do you want to delete the Info?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">
+                                Close
+                            </button>
+                            <button class="btn btn-primary" type="button" ng-click="deleteResortUsefulInfo1();">
+                                Delete IT!
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </div>
+
+            <div class="col-md-12 center">
+                <a href="#/add-resort-useful-info"><button type="button" class="btn btn-info breadcrumb-button" name="view-listing">Add Resort Useful Info</button></a>
+            </div>
+        </div>
+    </div>
+</div>

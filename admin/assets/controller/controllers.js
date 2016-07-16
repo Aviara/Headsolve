@@ -1,5 +1,9 @@
+//1111
+
+//dfdsfdsf
 'use strict';
 //KD TEST
+//kd change
 /* Controllers */
 //kalpesh test
 var laundryCtrl = angular.module('laundryCtrl', []);
